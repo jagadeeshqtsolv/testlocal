@@ -1,0 +1,424 @@
+{
+  "id": "75e0613c-e1b7-44b2-bf98-1d3475159907",
+  "requirementId": "eece6342-3ec9-42c9-a0b6-858405104039",
+  "model": "gpt-5",
+  "createdAt": "2026-07-12T19:09:23.474Z",
+  "plan": {
+    "version": 1,
+    "suiteName": "Save News Article - Smoke",
+    "cases": [
+      {
+        "id": "0e5cc0e9-b8cf-4b4d-a85f-a797e6c6e738",
+        "title": "Save Featured article via bookmark icon and open Saved News from toast",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "s1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to Commons Home",
+            "value": "https://commons-qa.util.ukg.com/"
+          },
+          {
+            "id": "s2",
+            "action": "scrollIntoView",
+            "targetDescription": "Scroll to Featured section",
+            "screenName": "HomePage",
+            "pageObjectMethod": "scrollFeaturedIntoView"
+          },
+          {
+            "id": "s3",
+            "action": "assertVisible",
+            "targetDescription": "Verify Featured section is visible",
+            "screenName": "HomePage",
+            "pageObjectMethod": "expectFeaturedVisible"
+          },
+          {
+            "id": "s4",
+            "action": "assertVisible",
+            "targetDescription": "Verify bookmark icon is visible on a Featured article card",
+            "screenName": "HomePage",
+            "pageObjectMethod": "expectBookmark2Visible"
+          },
+          {
+            "id": "s5",
+            "action": "tap",
+            "targetDescription": "Tap bookmark icon on a Featured article card to Save",
+            "screenName": "HomePage",
+            "pageObjectMethod": "clickBookmark2"
+          },
+          {
+            "id": "s6",
+            "action": "assertContainsText",
+            "targetDescription": "Verify success toast appears with Save confirmation and navigation hint",
+            "locatorHint": "div[role='status']",
+            "assertion": "News saved successfully!, View saved news under Profile"
+          },
+          {
+            "id": "s7",
+            "action": "assertChecked",
+            "targetDescription": "Verify bookmark icon indicates Saved state (filled/active)",
+            "screenName": "HomePage",
+            "pageObjectMethod": "expectBookmark2Checked"
+          },
+          {
+            "id": "s8",
+            "action": "tap",
+            "targetDescription": "Open 'View saved news under Profile' from toast",
+            "locatorHint": "div[role='status'] a:has-text(\"View saved news under Profile\")"
+          },
+          {
+            "id": "s9",
+            "action": "assertVisible",
+            "targetDescription": "Verify My Saved News page is displayed",
+            "screenName": "SavedNewsPage",
+            "pageObjectMethod": "expectMySavedNewsVisible"
+          },
+          {
+            "id": "s10",
+            "action": "assertCountGreaterThan",
+            "targetDescription": "Verify Saved list has at least one saved article card",
+            "locatorHint": "[data-testid='saved-card']"
+          }
+        ],
+        "tags": [
+          "@smoke",
+          "@regression"
+        ]
+      },
+      {
+        "id": "39ba8ad6-2bb5-4600-afc9-f9d7428cbee6",
+        "title": "Save Latest News article and access Saved News via Profile menu",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "s1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to Commons Home",
+            "value": "https://commons-qa.util.ukg.com/"
+          },
+          {
+            "id": "s2",
+            "action": "scrollIntoView",
+            "targetDescription": "Scroll to Latest News section",
+            "locatorHint": "section[aria-label='Latest News']"
+          },
+          {
+            "id": "s3",
+            "action": "assertVisible",
+            "targetDescription": "Verify Latest News section is visible",
+            "locatorHint": "section[aria-label='Latest News']"
+          },
+          {
+            "id": "s4",
+            "action": "assertVisible",
+            "targetDescription": "Verify a Save (bookmark) icon is present on a Latest News card",
+            "locatorHint": "section[aria-label='Latest News'] .news-card:first-of-type button[aria-label='Save']"
+          },
+          {
+            "id": "s5",
+            "action": "tap",
+            "targetDescription": "Tap Save icon on first Latest News card",
+            "locatorHint": "section[aria-label='Latest News'] .news-card:first-of-type button[aria-label='Save']"
+          },
+          {
+            "id": "s6",
+            "action": "assertContainsText",
+            "targetDescription": "Verify success toast appears",
+            "locatorHint": "div[role='status']",
+            "assertion": "News saved successfully!, View saved news under Profile"
+          },
+          {
+            "id": "s7",
+            "action": "tap",
+            "targetDescription": "Open Profile menu",
+            "screenName": "ProfilePage",
+            "pageObjectMethod": "clickProfile"
+          },
+          {
+            "id": "s8",
+            "action": "tap",
+            "targetDescription": "Open My Saved News",
+            "screenName": "ProfilePage",
+            "pageObjectMethod": "clickMySavedNews"
+          },
+          {
+            "id": "s9",
+            "action": "assertVisible",
+            "targetDescription": "Verify My Saved News page is displayed",
+            "screenName": "SavedNewsPage",
+            "pageObjectMethod": "expectMySavedNewsVisible"
+          },
+          {
+            "id": "s10",
+            "action": "assertCountGreaterThan",
+            "targetDescription": "Verify Saved list has at least one saved article card",
+            "locatorHint": "[data-testid='saved-card']"
+          }
+        ],
+        "tags": [
+          "@smoke",
+          "@regression"
+        ]
+      },
+      {
+        "id": "91389fb9-2354-4628-8bd9-146920224441",
+        "title": "Open an item from My Saved News and load full article",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "s1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to Commons Home",
+            "value": "https://commons-qa.util.ukg.com/"
+          },
+          {
+            "id": "s2",
+            "action": "tap",
+            "targetDescription": "Open Profile menu",
+            "screenName": "ProfilePage",
+            "pageObjectMethod": "clickProfile"
+          },
+          {
+            "id": "s3",
+            "action": "tap",
+            "targetDescription": "Open My Saved News",
+            "screenName": "ProfilePage",
+            "pageObjectMethod": "clickMySavedNews"
+          },
+          {
+            "id": "s4",
+            "action": "assertVisible",
+            "targetDescription": "Verify My Saved News page is displayed",
+            "screenName": "SavedNewsPage",
+            "pageObjectMethod": "expectMySavedNewsVisible"
+          },
+          {
+            "id": "s5",
+            "action": "tap",
+            "targetDescription": "Tap first saved article to open it",
+            "locatorHint": ".saved-list .saved-card:first-of-type a"
+          },
+          {
+            "id": "s6",
+            "action": "wait",
+            "targetDescription": "Wait for navigation/load",
+            "value": "2000"
+          },
+          {
+            "id": "s7",
+            "action": "assertHidden",
+            "targetDescription": "Confirm Saved News page content is no longer visible (navigated to article)",
+            "screenName": "SavedNewsPage",
+            "pageObjectMethod": "expectMySavedNewsHidden"
+          },
+          {
+            "id": "s8",
+            "action": "assertVisible",
+            "targetDescription": "Verify article content main area is visible",
+            "locatorHint": "main"
+          }
+        ],
+        "tags": [
+          "@smoke",
+          "@regression"
+        ]
+      },
+      {
+        "id": "9a43fdfa-f10e-4d56-8ad9-0937d91164fd",
+        "title": "Unsave from My Saved News removes item immediately",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "s1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to Commons Home",
+            "value": "https://commons-qa.util.ukg.com/"
+          },
+          {
+            "id": "s2",
+            "action": "scrollIntoView",
+            "targetDescription": "Scroll to Featured section",
+            "screenName": "HomePage",
+            "pageObjectMethod": "scrollFeaturedIntoView"
+          },
+          {
+            "id": "s3",
+            "action": "tap",
+            "targetDescription": "Save a Featured article to ensure at least one saved item",
+            "screenName": "HomePage",
+            "pageObjectMethod": "clickBookmark2"
+          },
+          {
+            "id": "s4",
+            "action": "assertContainsText",
+            "targetDescription": "Verify save success toast appears",
+            "locatorHint": "div[role='status']",
+            "assertion": "News saved successfully!, View saved news under Profile"
+          },
+          {
+            "id": "s5",
+            "action": "tap",
+            "targetDescription": "Open Profile menu",
+            "screenName": "ProfilePage",
+            "pageObjectMethod": "clickProfile"
+          },
+          {
+            "id": "s6",
+            "action": "tap",
+            "targetDescription": "Open My Saved News",
+            "screenName": "ProfilePage",
+            "pageObjectMethod": "clickMySavedNews"
+          },
+          {
+            "id": "s7",
+            "action": "assertVisible",
+            "targetDescription": "Verify My Saved News page is displayed",
+            "screenName": "SavedNewsPage",
+            "pageObjectMethod": "expectMySavedNewsVisible"
+          },
+          {
+            "id": "s8",
+            "action": "tap",
+            "targetDescription": "Unsave the first saved article from the list",
+            "locatorHint": ".saved-list .saved-card:first-of-type button[aria-label='Unsave']"
+          },
+          {
+            "id": "s9",
+            "action": "wait",
+            "targetDescription": "Wait for list to update",
+            "value": "1000"
+          },
+          {
+            "id": "s10",
+            "action": "assertVisible",
+            "targetDescription": "Verify 'No Saved News' placeholder appears (list updated immediately)",
+            "screenName": "SavedNewsPage",
+            "pageObjectMethod": "expectNoSavedNewsVisible"
+          }
+        ],
+        "tags": [
+          "@smoke",
+          "@regression"
+        ]
+      },
+      {
+        "id": "78a301b2-1a78-480f-8ebb-22bf064db76b",
+        "title": "Saved items persist for the user across navigation cycles",
+        "priority": "P0",
+        "platforms": [
+          "chrome"
+        ],
+        "preconditions": [],
+        "steps": [
+          {
+            "id": "s1",
+            "action": "openUrl",
+            "targetDescription": "Navigate to Commons Home",
+            "value": "https://commons-qa.util.ukg.com/"
+          },
+          {
+            "id": "s2",
+            "action": "scrollIntoView",
+            "targetDescription": "Scroll to Featured section",
+            "screenName": "HomePage",
+            "pageObjectMethod": "scrollFeaturedIntoView"
+          },
+          {
+            "id": "s3",
+            "action": "tap",
+            "targetDescription": "Save a Featured article to ensure saved state exists",
+            "screenName": "HomePage",
+            "pageObjectMethod": "clickBookmark2"
+          },
+          {
+            "id": "s4",
+            "action": "assertContainsText",
+            "targetDescription": "Verify save success toast appears",
+            "locatorHint": "div[role='status']",
+            "assertion": "News saved successfully!, View saved news under Profile"
+          },
+          {
+            "id": "s5",
+            "action": "tap",
+            "targetDescription": "Open Profile menu",
+            "screenName": "ProfilePage",
+            "pageObjectMethod": "clickProfile"
+          },
+          {
+            "id": "s6",
+            "action": "tap",
+            "targetDescription": "Open My Saved News",
+            "screenName": "ProfilePage",
+            "pageObjectMethod": "clickMySavedNews"
+          },
+          {
+            "id": "s7",
+            "action": "assertVisible",
+            "targetDescription": "Verify My Saved News page is displayed",
+            "screenName": "SavedNewsPage",
+            "pageObjectMethod": "expectMySavedNewsVisible"
+          },
+          {
+            "id": "s8",
+            "action": "assertCountGreaterThan",
+            "targetDescription": "Verify Saved list has at least one saved article card",
+            "locatorHint": "[data-testid='saved-card']"
+          },
+          {
+            "id": "s9",
+            "action": "openUrl",
+            "targetDescription": "Navigate away to Home",
+            "value": "https://commons-qa.util.ukg.com/"
+          },
+          {
+            "id": "s10",
+            "action": "tap",
+            "targetDescription": "Open Profile menu again",
+            "screenName": "ProfilePage",
+            "pageObjectMethod": "clickProfile"
+          },
+          {
+            "id": "s11",
+            "action": "tap",
+            "targetDescription": "Reopen My Saved News",
+            "screenName": "ProfilePage",
+            "pageObjectMethod": "clickMySavedNews"
+          },
+          {
+            "id": "s12",
+            "action": "assertVisible",
+            "targetDescription": "Verify My Saved News page is displayed",
+            "screenName": "SavedNewsPage",
+            "pageObjectMethod": "expectMySavedNewsVisible"
+          },
+          {
+            "id": "s13",
+            "action": "assertCountGreaterThan",
+            "targetDescription": "Verify Saved list still has at least one saved article (persistence)",
+            "locatorHint": "[data-testid='saved-card']"
+          }
+        ],
+        "tags": [
+          "@smoke",
+          "@regression"
+        ]
+      }
+    ]
+  }
+}

@@ -194,7 +194,14 @@ export class HomePage {
   }
 
   async clickBookmark2(): Promise<void> {
-    await clickWhenVisible(webLocator(this.page, HomePage.L.bookmark2));
+    // Try to click "Save news" button if visible, otherwise "Unsave news"
+    const saveNewsBtn = this.page.getByRole('button', { name: 'Save news' }).first();
+    const unsaveNewsBtn = this.page.getByRole('button', { name: 'Unsave news' }).first();
+    if (await saveNewsBtn.isVisible()) {
+      await saveNewsBtn.click();
+    } else if (await unsaveNewsBtn.isVisible()) {
+      await unsaveNewsBtn.click();
+    }
   }
 
   async expectBookmark2Visible(timeoutMs = 30_000, soft = true): Promise<void> {
