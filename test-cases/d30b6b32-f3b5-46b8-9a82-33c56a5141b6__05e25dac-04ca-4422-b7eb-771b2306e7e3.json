@@ -1,0 +1,61 @@
+{
+  "id": "05e25dac-04ca-4422-b7eb-771b2306e7e3",
+  "testPlanId": "d30b6b32-f3b5-46b8-9a82-33c56a5141b6",
+  "requirementId": "eece6342-3ec9-42c9-a0b6-858405104039",
+  "suiteName": "Save News Article — Smoke",
+  "case": {
+    "id": "05e25dac-04ca-4422-b7eb-771b2306e7e3",
+    "title": "Saved state persists after page reload for the logged-in user",
+    "priority": "P0",
+    "platforms": [
+      "chrome"
+    ],
+    "preconditions": [],
+    "steps": [
+      {
+        "id": "S1",
+        "action": "openUrl",
+        "targetDescription": "Navigate to Commons QA",
+        "value": "https://commons-qa.util.ukg.com/"
+      },
+      {
+        "id": "S2",
+        "action": "assertVisible",
+        "targetDescription": "Featured section is visible",
+        "screenName": "UkgcommonsPage",
+        "pageObjectMethod": "expectFeaturedVisible"
+      },
+      {
+        "id": "S3",
+        "action": "tap",
+        "targetDescription": "Save a Featured article (if not already saved)",
+        "screenName": "UkgcommonsPage",
+        "pageObjectMethod": "clickSaveNews"
+      },
+      {
+        "id": "S4",
+        "action": "assertVisible",
+        "targetDescription": "Unsave (filled) icon indicates saved state",
+        "screenName": "UkgcommonsPage",
+        "pageObjectMethod": "expectUnsaveNewsVisible"
+      },
+      {
+        "id": "S5",
+        "action": "openUrl",
+        "targetDescription": "Reload Commons QA",
+        "value": "https://commons-qa.util.ukg.com/"
+      },
+      {
+        "id": "S6",
+        "action": "assertVisible",
+        "targetDescription": "Saved state persists (Unsave icon still visible on the article)",
+        "screenName": "UkgcommonsPage",
+        "pageObjectMethod": "expectUnsaveNewsVisible"
+      }
+    ],
+    "tags": [
+      "@smoke",
+      "@regression"
+    ]
+  }
+}
