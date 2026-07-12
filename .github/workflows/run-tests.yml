@@ -75,7 +75,6 @@ jobs:
         env:
           AUTOM_ENVIRONMENT: ${{ inputs.environment }}
           TEST_ENV: ${{ inputs.environment }}
-
         run: |
           SPEC_PATHS_ARG="${{ inputs.spec_paths }}"
           GREP_PATTERN="${{ inputs.grep }}"
