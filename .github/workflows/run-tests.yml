@@ -1,17 +1,6 @@
 # .github/workflows/run-tests.yml
 # Triggered by Autonix via workflow_dispatch.
 # Requires: Node.js, npm, and test dependencies installed.
-#
-# DB step secrets — this repo has active database connection(s). A CI runner does a fresh
-# checkout and never sees this platform's local execution/.env.database, so add these
-# as repository secrets (Settings → Secrets and variables → Actions) with the exact names below (values from the Database tab's active connection(s)):
-#   DB_ACTIVE_SALESFORCE_SOQL_SALESFORCE_LOGIN_URL
-#   DB_ACTIVE_SALESFORCE_SOQL_SALESFORCE_CLIENT_ID
-#   DB_ACTIVE_SALESFORCE_SOQL_SALESFORCE_USERNAME
-#   DB_ACTIVE_SALESFORCE_SOQL_SALESFORCE_API_VERSION
-#   DB_ACTIVE_SALESFORCE_SOQL_SALESFORCE_IS_SANDBOX
-#   DB_ACTIVE_SALESFORCE_SOQL_SALESFORCE_PRIVATE_KEY_B64
-#
 name: run-tests
 
 on:
@@ -86,12 +75,7 @@ jobs:
         env:
           AUTOM_ENVIRONMENT: ${{ inputs.environment }}
           TEST_ENV: ${{ inputs.environment }}
-          DB_ACTIVE_SALESFORCE_SOQL_SALESFORCE_LOGIN_URL: ${{ secrets.DB_ACTIVE_SALESFORCE_SOQL_SALESFORCE_LOGIN_URL }}
-          DB_ACTIVE_SALESFORCE_SOQL_SALESFORCE_CLIENT_ID: ${{ secrets.DB_ACTIVE_SALESFORCE_SOQL_SALESFORCE_CLIENT_ID }}
-          DB_ACTIVE_SALESFORCE_SOQL_SALESFORCE_USERNAME: ${{ secrets.DB_ACTIVE_SALESFORCE_SOQL_SALESFORCE_USERNAME }}
-          DB_ACTIVE_SALESFORCE_SOQL_SALESFORCE_API_VERSION: ${{ secrets.DB_ACTIVE_SALESFORCE_SOQL_SALESFORCE_API_VERSION }}
-          DB_ACTIVE_SALESFORCE_SOQL_SALESFORCE_IS_SANDBOX: ${{ secrets.DB_ACTIVE_SALESFORCE_SOQL_SALESFORCE_IS_SANDBOX }}
-          DB_ACTIVE_SALESFORCE_SOQL_SALESFORCE_PRIVATE_KEY_B64: ${{ secrets.DB_ACTIVE_SALESFORCE_SOQL_SALESFORCE_PRIVATE_KEY_B64 }}
+
         run: |
           SPEC_PATHS_ARG="${{ inputs.spec_paths }}"
           GREP_PATTERN="${{ inputs.grep }}"
