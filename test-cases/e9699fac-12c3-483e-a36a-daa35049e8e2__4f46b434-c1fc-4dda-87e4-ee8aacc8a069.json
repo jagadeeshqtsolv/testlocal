@@ -1,0 +1,57 @@
+{
+  "id": "4f46b434-c1fc-4dda-87e4-ee8aacc8a069",
+  "testPlanId": "e9699fac-12c3-483e-a36a-daa35049e8e2",
+  "requirementId": "eece6342-3ec9-42c9-a0b6-858405104039",
+  "suiteName": "Save News Article - Smoke",
+  "case": {
+    "id": "4f46b434-c1fc-4dda-87e4-ee8aacc8a069",
+    "title": "Unsaving an article removes it from My Saved News immediately",
+    "priority": "P0",
+    "platforms": [
+      "chrome"
+    ],
+    "preconditions": [],
+    "steps": [
+      {
+        "id": "step1",
+        "action": "openUrl",
+        "targetDescription": "Navigate to UKG Commons QA",
+        "value": "https://commons-qa.util.ukg.com/"
+      },
+      {
+        "id": "step2",
+        "action": "scrollIntoView",
+        "targetDescription": "Scroll to Featured News section",
+        "locatorHint": "[data-testid='featured-news-section']"
+      },
+      {
+        "id": "step3",
+        "action": "tap",
+        "targetDescription": "Tap bookmark icon on a Featured News article",
+        "locatorHint": "[data-testid='featured-news-card'] [data-testid='bookmark-icon']"
+      },
+      {
+        "id": "step4",
+        "action": "tap",
+        "targetDescription": "Click 'View saved news under Profile' in toast",
+        "locatorHint": "[data-testid='view-saved-news-toast-link']"
+      },
+      {
+        "id": "step5",
+        "action": "tap",
+        "targetDescription": "Tap unsave icon on the saved article in My Saved News",
+        "locatorHint": "[data-testid='saved-news-card'] [data-testid='unsave-icon']"
+      },
+      {
+        "id": "step6",
+        "action": "assertHidden",
+        "targetDescription": "Saved article is removed from My Saved News",
+        "locatorHint": "[data-testid='saved-news-card']"
+      }
+    ],
+    "tags": [
+      "@smoke",
+      "@regression"
+    ]
+  }
+}

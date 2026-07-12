@@ -1,0 +1,64 @@
+{
+  "id": "ac6f9dac-a363-4f12-ad50-e658706bdd0f",
+  "testPlanId": "e9699fac-12c3-483e-a36a-daa35049e8e2",
+  "requirementId": "eece6342-3ec9-42c9-a0b6-858405104039",
+  "suiteName": "Save News Article - Smoke",
+  "case": {
+    "id": "ac6f9dac-a363-4f12-ad50-e658706bdd0f",
+    "title": "Saved articles display in reverse chronological order",
+    "priority": "P0",
+    "platforms": [
+      "chrome"
+    ],
+    "preconditions": [],
+    "steps": [
+      {
+        "id": "step1",
+        "action": "openUrl",
+        "targetDescription": "Navigate to UKG Commons QA",
+        "value": "https://commons-qa.util.ukg.com/"
+      },
+      {
+        "id": "step2",
+        "action": "scrollIntoView",
+        "targetDescription": "Scroll to Featured News section",
+        "locatorHint": "[data-testid='featured-news-section']"
+      },
+      {
+        "id": "step3",
+        "action": "tap",
+        "targetDescription": "Tap bookmark icon on first Featured News article",
+        "locatorHint": "[data-testid='featured-news-card']:nth-child(1) [data-testid='bookmark-icon']"
+      },
+      {
+        "id": "step4",
+        "action": "tap",
+        "targetDescription": "Tap bookmark icon on second Featured News article",
+        "locatorHint": "[data-testid='featured-news-card']:nth-child(2) [data-testid='bookmark-icon']"
+      },
+      {
+        "id": "step5",
+        "action": "tap",
+        "targetDescription": "Click 'View saved news under Profile' in toast",
+        "locatorHint": "[data-testid='view-saved-news-toast-link']"
+      },
+      {
+        "id": "step6",
+        "action": "assertVisible",
+        "targetDescription": "My Saved News page is visible",
+        "screenName": "SavedNewsPage",
+        "pageObjectMethod": "expectMySavedNewsVisible"
+      },
+      {
+        "id": "step7",
+        "action": "assertText",
+        "targetDescription": "Most recently saved article appears at the top of My Saved News",
+        "locatorHint": "[data-testid='saved-news-card']:first-child [data-testid='news-title']"
+      }
+    ],
+    "tags": [
+      "@smoke",
+      "@regression"
+    ]
+  }
+}
