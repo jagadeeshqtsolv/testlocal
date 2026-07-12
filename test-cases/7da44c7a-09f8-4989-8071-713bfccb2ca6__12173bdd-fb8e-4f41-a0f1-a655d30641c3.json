@@ -69,7 +69,8 @@
     "tags": [
       "@smoke",
       "@e2e",
-      "@regression"
+      "@regression",
+      "@demo"
     ]
   }
 }
