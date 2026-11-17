@@ -1,0 +1,6 @@
+{
+  "id": "db718deb-96dc-4976-bf8b-0108e1ac17c2",
+  "title": "Sauce Demo Shopify Homepage and Navigation Overview",
+  "content": "The homepage of https://sauce-demo.myshopify.com/ features a top navigation bar with a menu hamburger icon (button[aria-label=\"Open navigation menu\"]) that opens a side navigation menu. The side menu can be closed with a button (button[aria-label=\"Close menu\"]). The homepage provides access to store Q&A, collection browsing, and cart management. There is a 'Log in' button (a[href=\"/account/login\"]) in the top navigation that leads to the login/account authentication flow, either as a modal or a separate page. The layout supports both desktop and mobile navigation, and the main user flows include browsing products, accessing account features, and managing the shopping cart.",
+  "createdAt": "2026-11-09T15:26:19.025Z"
+}

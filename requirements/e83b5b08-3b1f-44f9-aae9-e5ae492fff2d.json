@@ -1,0 +1,6 @@
+{
+  "id": "e83b5b08-3b1f-44f9-aae9-e5ae492fff2d",
+  "title": "Sauce Demo Shopify Featured Products Section",
+  "content": "Below the banner, the homepage displays a section featuring a selection of products. Each product card includes an image, title, price, and an 'Add to Cart' button. Clicking a product image or title navigates to the product detail page. The 'Add to Cart' button adds the product to the user's cart and updates the cart icon count.",
+  "createdAt": "2026-11-09T17:17:10.163Z"
+}
