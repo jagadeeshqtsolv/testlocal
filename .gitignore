@@ -7,15 +7,15 @@ playwright-report/
 logs/*.json
 logs/*.html
 logs/*.zip
+# Archived per-run HTML reports (logs/reports/{runId}/) — a server-side cache for this
+# platform's own report viewer, not source — can be dozens of files per run (index.html,
+# per-test data JSON, trace .zip, screenshots), none of which belong in the repo.
+logs/reports/
 
 # Cloud execution — contain credentials, never commit
 execution/.env.execution
 execution/.env.database
 browserstack.yml
 
-# Auth state — contains session cookies/tokens, never commit
-.auth/
-
 # Recorder artifacts
 .dom-captures/
-.git-users/
